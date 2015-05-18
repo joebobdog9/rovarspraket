@@ -29,12 +29,10 @@ console.assert(isNaN(max("aaa", "bbb")));
 
 function maxOfThree(a, b, c) {
     // YOUR CODE HERE
-    if (a > b && c) {
-        return a;
-    } else if (b > a && c) {
-        return b;
+    if (max(a, b) > c) {
+        return max(a, b);
     } else {
-        return b;
+        return c
     }
 }
 
@@ -52,16 +50,49 @@ console.assert(isNaN(maxOfThree("aaa", "bbb", "ccc")));
  * and returns true if it is a vowel, false otherwise.
  */
 
-function isVowel(char) {
-    // YOUR CODE HERE
-    if (typeof char === "string") {
-        return false;
-    }
-    if (char = 'a', 'e', 'i', 'o', 'u', 'y') {
-        return true;
 
-    } else {
-        return false;
+function isVowel(char) {
+    // YOUR CODE HERE 
+
+    switch (char) {
+        case "a":
+            return true;
+            break;
+        case "A":
+            return true;
+            break
+        case "e":
+            return true;
+            break;
+        case "E":
+            return true;
+            break;
+        case "i":
+            return true;
+            break;
+        case "I":
+            return true;
+            break;
+        case "o":
+            return true;
+            break;
+        case "O":
+            return true;
+            break;
+        case "u":
+            return true;
+            break;
+        case "U":
+            return true;
+            break;
+        case "y":
+            return true;
+            break;
+        case "Y":
+            return true;
+            break;
+        default:
+            return false;
     }
 }
 
@@ -83,19 +114,23 @@ console.assert(isVowel("E") === true);
  * return the string "tothohisos isos fofunon".
 
  */
-
 function rovarspraket(rovar) {
-    // YOUR CODE HERE
+    //     // YOURCODE HERE
+    if ("number" === typeof rovar )
+        return String(rovar);
+
+
     var output = "";
     for (var i = 0; i < rovar.length; i++) {
-
-        if (rovar = "" !== 'a', 'e', 'i', 'o', 'u', 'y') {
-            return rovar + "o" + rovar;
-
-        } else
+        
+        if (true === isVowel(rovar[i])){
             output += rovar[i];
+        } else
+            output += rovar[i] + 'o' + rovar[i];
     }
+    return output
 }
+
 
 console.assert(rovarspraket("a") === "a")
 console.assert(rovarspraket("b") === "bob")
@@ -113,32 +148,32 @@ console.assert(rovarspraket(0) === "0")
  */
 
 function reverse(str) {
-    // YOUR CODE HERE
-    str.split('').map(function(v, i, arr) {
-        return arr[arr.length - i - 1]
-    }).join('')
+// YOUR CODE HERE
+return str.split("").reverse().join("");
 }
 
 console.assert(reverse("books") === "skoob")
 console.assert(reverse("we don't want no trouble") === "elbuort on tnaw t'nod ew")
 
-/**
- * Part 5
- *
- * Write a function findLongestWord() that takes an
- * string returns the first, longest word in the array.
- *
- * i.e. findLongestWord("book dogs") should return "book"
- */
+// /**
+// * Part 5
+// *
+// * Write a function findLongestWord() that takes an
+// * string returns the first, longest word in the array.
+// *
+// * i.e. findLongestWord("book dogs") should return "book"
+// */
+
 
 function findLongestWord(text) {
-        // remove punctuation from text
-        text.replace(/[;'\-_!\.\?]/g, '')
-        text.split(' ')
-        return text.reduce(function(a, i, v, arr) {
-                return (a.length < v.length ? v : a)
-            }, ('')
-        }
+    // remove punctuation from text
+    text = text.split(/[^a-zA-Z]/);
+    return text.sort(function(a,b){return b.length-a.length})
+        .shift();
+    }
 
-        console.assert(findLongestWord("book dogs") === "book")
-        console.assert(findLongestWord("don't mess with Texas") === "Texas")
+
+
+
+console.assert(findLongestWord("book dogs") === "book")
+console.assert(findLongestWord("don't mess with Texas") === "Texas")
